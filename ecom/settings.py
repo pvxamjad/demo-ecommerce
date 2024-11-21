@@ -19,7 +19,7 @@ SECRET_KEY = 'django-insecure-@45-l$013syw$yv0g-z1e-onfhka!%esv-y-o(t_())ubtlmzn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = []
 
 
 
@@ -74,7 +74,11 @@ WSGI_APPLICATION = 'ecom.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+import shutil
 
+
+if not os.path.exists('/tmp/db.sqlite3'):
+    shutil.copyfile('db.sqlite3', '/tmp/db.sqlite3')
 
 
 DATABASES = {
