@@ -19,8 +19,8 @@ SECRET_KEY = 'django-insecure-@45-l$013syw$yv0g-z1e-onfhka!%esv-y-o(t_())ubtlmzn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://demo-ecommerce-woad.vercel.app','https://https://demo-ecommerce-woad.vercel.app']
-CSRF_TRUSTED_ORIGINS = ['https://https://demo-ecommerce-woad.vercel.app']
+ALLOWED_HOSTS = ['demo-ecommerce-pvxamjads-projects.vercel.app','https://demo-ecommerce-pvxamjads-projects.vercel.app']
+CSRF_TRUSTED_ORIGINS = ['https://demo-ecommerce-pvxamjads-projects.vercel.app']
 
 
 # Application definition
