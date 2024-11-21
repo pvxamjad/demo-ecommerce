@@ -19,8 +19,8 @@ SECRET_KEY = 'django-insecure-@45-l$013syw$yv0g-z1e-onfhka!%esv-y-o(t_())ubtlmzn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-CSRF_TRUSTED_ORIGINS = []
+ALLOWED_HOSTS = ['https://demo-ecommerce-woad.vercel.app','https://https://demo-ecommerce-woad.vercel.app']
+CSRF_TRUSTED_ORIGINS = ['https://https://demo-ecommerce-woad.vercel.app']
 
 
 # Application definition
@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE':'django.db.backends.postgresql_psycopg2',
         'NAME':'railway',  
         'USER':'postgres',
-        'PASSWORD':os.environ.get('DATABASE_PASS'),
+        'PASSWORD':os.environ['DATABASE_PASS'],
         'HOST':'autorack.proxy.rlwy.net',
         'PORT':'26980',
     }
