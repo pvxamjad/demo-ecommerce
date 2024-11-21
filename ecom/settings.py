@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'ecom.wsgi.application'
 import shutil
 
 
-if not os.path.exists('/tmp/db.sqlite3'):
+if not os.path.exists('tmp/db.sqlite3'):
     shutil.copyfile('db.sqlite3', '/tmp/db.sqlite3')
 
 
