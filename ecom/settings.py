@@ -74,11 +74,6 @@ WSGI_APPLICATION = 'ecom.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-import shutil
-
-
-if not os.path.exists('tmp/db.sqlite3'):
-    shutil.copyfile('db.sqlite3', '/tmp/db.sqlite3')
 
 
 DATABASES = {
