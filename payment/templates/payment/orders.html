@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder"> order details </h1>
+            <p class="lead fw-normal text-white-50 mb-0"></p>
+        </div>
+    </div>
+</header>
+<!-- Section-->
+ <br>
+ <br>
+<div class="container">
+    <div class="row ">
+        <div class="col">
+            <div class="card">
+                <div class="card-header text-center">
+                    {{ orders }} - {{ orders.amount_paid }}
+                </div>
+                <div class="card-body">
+                    Email : {{ orders.email }} <br>
+                    {% if orders.shipped_date %}
+                    Orderd Date : {{ orders.shipped_date }}<br>
+                    {% else %}
+                    Date shipped : {{ orders.date_orderd }}<br>
+                    {% endif %}
+                    {{ orders.full_name  }}<br>
+                     <pre>{{ orders.shipping_address }}</pre><br>
+
+                    Items : <br>
+                    {% for item in items %}
+                         {{ item.product }} - {{ item.price }} <br>
+                        Quantity : {{ item.quantity }} <br> 
+
+                    {% endfor %}
+                    <br>
+                    {% if not orders.shipped %}
+                    <form method="POST" action="{% url 'orders' orders.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" value="true" name="shipping_status">
+                        <button type="submit" class="btn btn-success" >Mark as Shipped</button>
+                    </form>
+                    {% else %}
+                    <form method="POST" action="{% url 'orders' orders.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" value="false" name="shipping_status">
+                        <button type="submit" class="btn btn-danger" >Mark as Not Shipped</button>
+                    </form>
+                    {% endif %}
+                </div>
+              </div>
+              
+        </div>
+    </div>
+
+</div>
+<br>
+
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder"> Shipped </h1>
+            <p class="lead fw-normal text-white-50 mb-0">shipped items</p>
+        </div>
+    </div>
+</header>
+<!-- Section-->
+ <br>
+<div class="container">
+    <div class="row ">
+        <div class="col" align="center">
+            <h4>Shipped Items</h4> <br>
+            <table class="table table-striped table-hover table-bordered">
+                <thead class="table-dark">
+                  <tr>
+                    <th scope="col">order id</th>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Date Orderd</th>
+                    <th scope="col">Shipped</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for items in orders %}
+                  <tr>
+                    <td><a href="{% url 'orders' items.id %}">{{ items.id }}</a></td>
+                    <td>{{ items.full_name }}</td>
+                    <td>{{ items.email }}</td>
+                    <td>{{ items.amount_paid }}</td>
+                    <td>{{ items.shipped_date }}</td>
+                    <td>
+
+                      <form method="POST" >
+                        {% csrf_token %}
+                        <input type="hidden" value="false" name="shipping_status" >
+                        <input type="hidden" value="{{ items.id }}" name="num" >
+                        <button class="btn btn-danger btn-sm" type="submit" >Mark as Unshipped</button>
+                      </form>
+                    </td>
+
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<br>
+
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+
+
+{% endblock %}

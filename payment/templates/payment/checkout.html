@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Checkkout</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Review your order</p>
+        </div>
+    </div>
+</header>
+<!-- Section-->
+ <br>
+<div class="container items-center">
+    <div class="card  mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="card">
+                <div class="card-header">
+                    Checkout Summary
+                </div>
+                <div class="card-body">
+
+                    {% if cart_products %}
+                    {% for product in cart_products %}
+
+                    {% if product.is_sale %}
+                    <h5 class="card-title">{{product.name}}:{{ product.sale_price }}</h5>
+                    {% else %}
+                    <h5 class="card-title">{{product.name}}:{{ product.price }}</h5>
+                    {% endif %}
+                    <p class="card-text">{% for key,value in quantities.items %}
+                        {% if key == product.id|slugify %}
+                        <option selected> {{ value }} </option>
+                        {% endif %}
+                        {% endfor %}
+                    </p>
+
+                    {% endfor %}
+                    {% endif %}
+
+                    <h5 class="card-title">Total : {{ totals }}</h5>
+                    
+                    <a href="{% url 'cart_summary' %}" class="btn btn-sm btn-outline-secondary">Update Items</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container items-center">
+    <div class="card  mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="card">
+                <form action="{% url 'billing_info' %}" method="POST" >
+                    {% csrf_token %}
+                <div class="card-header">
+                    Shipping Info
+                </div>
+                <div class="card-body">
+                    {{ shipping_form.as_p }} <br>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <button href="submit" class="btn btn-success" >Continue to billing</button>
+</form>
+
+</div>
+
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+
+
+{% endblock %}
