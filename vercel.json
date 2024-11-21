@@ -1,10 +1,22 @@
 {
+    "version": 2,
     "builds": [{
         "src": "ecom/wsgi.py",
-        "use": "@vercel/python",
-        "config": { "maxLambdaSize": "15mb", "runtime": "3.12.7" }
+        "use": "@ardnt/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+    },
+    {
+        "src": "build_files.sh",
+        "use": "@vercel/static_buid",
+        "config": { 
+            "distDir": "staticfiles_build"
+         }
     }],
     "routes": [
+        {
+            "src": "/static/(.*)",
+            "dest": "/static/$1"
+        },
         {
             "src": "/(.*)",
             "dest": "ecom/wsgi.py"
