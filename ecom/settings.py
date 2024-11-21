@@ -17,7 +17,7 @@ load_dotenv()
 SECRET_KEY = 'django-insecure-@45-l$013syw$yv0g-z1e-onfhka!%esv-y-o(t_())ubtlmzn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['.vercel.app']
 
@@ -74,18 +74,13 @@ WSGI_APPLICATION = 'ecom.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-import shutil
-
-if not os.path.exists('/tmp/db.sqlite3'):
-    shutil.copyfile('db.sqlite3', '/tmp/db.sqlite3')
 
 
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join('/tmp', 'db.sqlite3'),
-    }
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),    }
 }
 
 
@@ -124,7 +119,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 
-STATICFILES_DIRS = ['static/']
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
